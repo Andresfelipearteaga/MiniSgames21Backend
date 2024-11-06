@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(
     {
-        origin: 'http://localhost:8080',
+        origin: 'https://mini-sgames21--psi.vercel.app',
         credentials: true,
     }
 ));
