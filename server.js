@@ -7,6 +7,7 @@ import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import activityRoutes from './routes/activitiesRoutes.js';
+import init from './routes/init.js';
 
 dotenv.config();
 connectDB();
@@ -21,7 +22,7 @@ app.use(cors(
     }
 ));
 
-
+app.use('/', init);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/activities', activityRoutes);
