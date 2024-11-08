@@ -44,14 +44,14 @@ export const login = async (req, res) => {
     try {
         const user = await User.findOne({ name });
         if (!user) { 
-            return res.status(404).json({ error: 'Usuario no encontrado' });
+            return res.json({ error: 'Usuario no encontrado', status: 404 });
         }
 
         const passwordDb = user.password;
         const passwordReq = password;
 
         if (passwordDb !== passwordReq) {
-            return res.status(401).json({ error: 'Contraseña incorrecta' });
+            return res.json({ error: 'Contraseña incorrecta', status: 401 });
         }
         // const hashedPassword = user.password;
         // const isMatch = await bycrypt.compare(password, hashedPassword);
