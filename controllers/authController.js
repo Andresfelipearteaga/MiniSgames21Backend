@@ -44,14 +44,14 @@ export const login = async (req, res) => {
     try {
         const user = await User.findOne({ name });
         if (!user) { 
-            return res.json({ message: 'Usuario no encontrado'});
+            return res.status(400).json({ message: 'Usuario no encontrado' });
         }
 
         const passwordDb = user.password;
         const passwordReq = password;
 
         if (passwordDb !== passwordReq) {
-            return res.json({ message: 'Contraseña incorrecta'});
+            return res.status(400).json({ message: 'Contraseña incorrecta' });
         }
         // const hashedPassword = user.password;
         // const isMatch = await bycrypt.compare(password, hashedPassword);
@@ -76,7 +76,7 @@ export const login = async (req, res) => {
         //     sameSite: 'strict', // Protege la cookie de ataques CSRF
         //     maxAge: 1000 * 60 * 60, // Expira en 1 dia
         // });
-        res.json({ userId: user._id, message: 'Sesión iniciada correctamente'});
+        res.status(201).json({ userId: user._id, message: 'Sesión iniciada correctamente'});
 
 
     } catch (error) {
